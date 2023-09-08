@@ -110,7 +110,8 @@ class _HomePageState extends State<HomePage> {
                       onTap: () {
                         Navigator.push(context, MaterialPageRoute(builder: (_) => DetailsPage(photo: photos[index])));
                       },
-                      child: Column(children: [
+                      child: Column(
+                          children: [
                         // Image.network('${photos[index].downloadUrl}'),
                         CachedNetworkImage(
                           imageUrl: '${photos[index].downloadUrl}',

@@ -1,16 +1,9 @@
 # imageup
 
-A new Flutter project.
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
+<img src="https://github.com/Fayozb/picsumphoto/assets/134942247/f0619f79-d4f1-4d79-b505-e06972f2b7c0" width="300" height="650"/>
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+<img src="https://github.com/Fayozb/picsumphoto/assets/134942247/f64c6ee9-33be-44a5-8d04-1b8691579603" width="300" height="650"/>
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.

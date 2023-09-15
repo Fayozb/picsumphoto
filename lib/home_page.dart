@@ -1,4 +1,3 @@
-
 import 'dart:convert';
 
 import 'package:cached_network_image/cached_network_image.dart';
@@ -95,83 +94,85 @@ class _HomePageState extends State<HomePage> {
     _scrollController.dispose();
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: _isLoading
           ? const Center(child: CircularProgressIndicator())
           : SmartRefresher(
-        controller: _refreshController,
-        enablePullUp: true,
-        onLoading: _moreFetchPhotos,
-        onRefresh: _refreshPhotos,
-        child: ListView.builder(
-            itemCount: _photos.length,
-            controller: _scrollController,
-            itemBuilder: (context, index) {
-              return InkWell(
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (_) =>
-                              DetailsPage(photo: _photos[index])));
-                },
-                child: Container(
-                  margin: const EdgeInsets.symmetric(
-                      horizontal: 10, vertical: 6),
-                  padding: const EdgeInsets.only(bottom: 10),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: Colors.grey,
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      ClipRRect(
-                        borderRadius: const BorderRadius.only(
-                          topLeft: Radius.circular(10),
-                          topRight: Radius.circular(10),
+              controller: _refreshController,
+              enablePullUp: true,
+              onLoading: _moreFetchPhotos,
+              onRefresh: _refreshPhotos,
+              child: ListView.builder(
+                  padding: const EdgeInsets.symmetric(vertical: 30),
+                  itemCount: _photos.length,
+                  controller: _scrollController,
+                  itemBuilder: (context, index) {
+                    return InkWell(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (_) =>
+                                    DetailsPage(photo: _photos[index])));
+                      },
+                      child: Container(
+                        margin: const EdgeInsets.symmetric(
+                            horizontal: 10, vertical: 6),
+                        padding: const EdgeInsets.only(
+                          bottom: 10,
                         ),
-                        child: CachedNetworkImage(
-                          imageUrl: '${_photos[index].downloadUrl}',
-                          width: double.infinity,
-                          height: 200,
-                          fit: BoxFit.cover,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.grey,
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            ClipRRect(
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(10),
+                                topRight: Radius.circular(10),
+                              ),
+                              child: CachedNetworkImage(
+                                imageUrl: '${_photos[index].downloadUrl}',
+                                width: double.infinity,
+                                height: 200,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                            const SizedBox(height: 20),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 10.0),
+                              child: Text(
+                                '${_photos[index].author}',
+                                style: const TextStyle(
+                                    color: Colors.white, fontSize: 18),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                      const SizedBox(height: 20),
-                      Padding(
-                        padding:
-                        const EdgeInsets.symmetric(horizontal: 10.0),
-                        child: Text(
-                          '${_photos[index].author}',
-                          style: const TextStyle(
-                              color: Colors.white, fontSize: 18),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              );
-            }),
-      ),
+                    );
+                  }),
+            ),
       floatingActionButton: _isUpwardEneble
           ? FloatingActionButton(
-        onPressed: () {
-          _scrollController.animateTo(
-            0,
-            duration: const Duration(milliseconds: 700),
-            curve: Curves.easeInOut,
-          );
-        },
-        backgroundColor: Colors.blueAccent,
-        child: const Icon(
-          Icons.upgrade,
-          size: 40,
-        ),
-      )
+              onPressed: () {
+                _scrollController.animateTo(
+                  0,
+                  duration: const Duration(milliseconds: 700),
+                  curve: Curves.easeInOut,
+                );
+              },
+              backgroundColor: Colors.grey,
+              child: const Icon(
+                Icons.upgrade,
+                size: 40,
+              ),
+            )
           : null,
     );
   }

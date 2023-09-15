@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:imageup/photo.dart';
+import 'photo.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class DetailsPage extends StatefulWidget {
@@ -17,36 +17,35 @@ class _DetailsPageState extends State<DetailsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blue,
-        title: Text('${widget.photo.author}', style: TextStyle(fontSize: 20),),
+        backgroundColor: Colors.grey,
+        title: Text('${widget.photo.author}'),
       ),
       body: Column(
         children: [
-
-          CachedNetworkImage(
-            imageUrl: '${widget.photo.downloadUrl}',
-
-          ),
-          SizedBox(height: 60,),
-          ElevatedButton(
-
-            onPressed: () async {
-              launchUrl(Uri.parse('${widget.photo.url}'));
-            },
-
-              child: Text('Show', style: TextStyle(fontSize: 20,
-
-                  color: Colors.black,
-                  decoration: TextDecoration.underline),
-
-
+          const SizedBox(height: 50),
+          CachedNetworkImage(imageUrl: '${widget.photo.downloadUrl}'),
+          const SizedBox(height: 50),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15),
+            child: ElevatedButton(
+              onPressed: () async {
+                launchUrl(Uri.parse('${widget.photo.url}'));
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.grey,
+                minimumSize: const Size.fromHeight(56),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16),
+                ),
               ),
+              child: const Text(
+                'Original Url',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400),
+              ),
+            ),
           ),
-
         ],
       ),
-
-
     );
   }
 }
